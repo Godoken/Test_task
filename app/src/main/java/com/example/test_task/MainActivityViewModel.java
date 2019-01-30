@@ -10,6 +10,7 @@ public class MainActivityViewModel {
 
         FragmentNewText fragmentNewText = new FragmentNewText();
         fragmentManager.beginTransaction().replace(R.id.fragment, fragmentNewText).commit();
+
     }
 
     void showFragmentHistory (FragmentManager fragmentManager){
@@ -19,9 +20,12 @@ public class MainActivityViewModel {
 
     }
 
-    void identifyLanguage (String s){
+    void identifyLanguage (){
 
         MainActivityModel mainActivityModel = new MainActivityModel();
+
+
+        mainActivityModel.getLanguage();
 
     }
 }

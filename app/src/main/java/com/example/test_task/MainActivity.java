@@ -23,7 +23,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    EditText new_text;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +32,20 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        new_text = (EditText) findViewById(R.id.editText);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
+            //EditText editText = (EditText) findViewById(R.id.editText);
             @Override
             public void onClick(View view) {
 
-                String s = new_text.getText().toString();
 
-                if (!s.equals("")){
-
-                    MainActivityViewModel mainActivityViewModel = new MainActivityViewModel();
-                    mainActivityViewModel.identifyLanguage(new_text.getText().toString());
-
-                }
+                MainActivityViewModel mainActivityViewModel = new MainActivityViewModel();
+                mainActivityViewModel.identifyLanguage();
 
                 //////////////////////////////
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
+                //.setAction("Action", null).show();
                 /////////////////////////////
 
 
@@ -58,6 +53,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+        fab.setClickable(false);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -115,10 +111,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_new_text) {
 
             mainActivityViewModel.showFragmentNewText(fragmentManager);
+            fab.setClickable(true);
+
 
         } else if (id == R.id.nav_history) {
 
             mainActivityViewModel.showFragmentHistory(fragmentManager);
+            fab.setClickable(false);
 
         } else if (id == R.id.nav_share) {
 
