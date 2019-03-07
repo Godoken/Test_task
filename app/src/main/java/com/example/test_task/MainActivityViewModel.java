@@ -2,6 +2,8 @@ package com.example.test_task;
 
 import android.content.Context;
 
+import java.util.List;
+
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivityViewModel {
@@ -25,7 +27,17 @@ public class MainActivityViewModel {
         MainActivityModel mainActivityModel = new MainActivityModel();
 
 
-        mainActivityModel.getLanguage();
+        mainActivityModel.getLanguage(new LanguageTranslator.IdentifyCallback() {
+            @Override
+            public void onSuccess(List<IdentifieldLanguage> languagesList) {
+                System.out.println("Ответ пришел");
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                System.out.println("Ответ не пришел");
+            }
+        });
 
     }
 }

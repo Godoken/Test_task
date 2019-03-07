@@ -5,14 +5,14 @@ import java.util.List;
 
 public class MainActivityModel {
 
-    List<Language> languageList = null;
+    List<IdentifieldLanguage> languageList = null;
     String s = "test";
 
-    public void getLanguage(){
+    public void getLanguage(LanguageTranslator.IdentifyCallback identifyCallback){
 
         LanguageTranslator languageTranslator = new LanguageTranslator();
 
-        languageList  = languageTranslator.start();
+        languageTranslator.start(identifyCallback);
 
         /*while (languageTranslator.getLanguageList() == null){
 
